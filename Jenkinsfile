@@ -16,7 +16,8 @@ pipeline {
         }
         stage('Run') {
             steps {
-                sh './jenkins/scripts/start.sh'
+                sh 'npm start'
+                sh 'echo $! > .pidfile'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 sh './jenkins/scripts/kill.sh'
             }
